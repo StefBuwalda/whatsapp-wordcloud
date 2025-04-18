@@ -1,6 +1,5 @@
-/data
-/processing
 /output
+_chat.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
