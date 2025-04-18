@@ -1,5 +1,5 @@
 from wordcloud import WordCloud  # type: ignore
-from backend.process_data import frequency_dictionary
+from backend.process_data import word_frequency_dict
 
 
 wordcloud = WordCloud(
@@ -17,7 +17,7 @@ wordcloud = WordCloud(
     contour_width=1,  # For consistent layout between runs
 )
 
-for author in frequency_dictionary:
-    freq_dict = frequency_dictionary.get(author)
+for author in word_frequency_dict:
+    freq_dict = word_frequency_dict.get(author)
     image = wordcloud.generate_from_frequencies(freq_dict)  # type: ignore
     image.to_file(f"output/{author}.png")  # type: ignore

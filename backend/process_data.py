@@ -19,10 +19,17 @@ makedirs("output", exist_ok=True)
 
 test = processRawMessages(chat)
 
-frequency_dictionary: dict[str, dict[str, int]] = {}
+total_frequency = 0
+total_frequency_dict: dict[str, int] = Counter()
+word_frequency_dict: dict[str, dict[str, int]] = {}
+
 
 for author in test:
-    frequency_dictionary[author] = {}
+    word_frequency_dict[author] = {}
     messageList = test.get(author)
     if messageList:
-        frequency_dictionary[author] = Counter(processMessageList(messageList))
+        wordList = Counter(processMessageList(messageList))
+        word_frequency_dict[author] = wordList
+        for count in wordList.items():
+            total_frequency_dict.update({author: count[1]})
+            total_frequency += count[1]

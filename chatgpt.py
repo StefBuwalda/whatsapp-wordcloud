@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-from backend.process_data import frequency_dictionary
+from backend.process_data import word_frequency_dict
 from collections import Counter
 
 # Example dictionary
-data = frequency_dictionary
+data = word_frequency_dict
 
 # Choose how many top words to show
 TOP_N = 5
