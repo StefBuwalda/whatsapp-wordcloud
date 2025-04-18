@@ -58,12 +58,20 @@ wordcloud = WordCloud(
 
 makedirs("output", exist_ok=True)
 
+worddict: dict[str, int] = {}
+total = 0
 for author in author_words.keys():
     words = author_words.get(author)
     if words:
+        worddict[author] = len(words)
+        total += len(words)
         for word in words:
             word_count_dicts[word] = word_count_dicts.get(word, 0) + 1
     test = wordcloud.generate_from_frequencies(  # type: ignore
         word_count_dicts
     )
     test.to_file("output/" + author + ".png")  # type: ignore
+
+for author in worddict.keys():
+    count = worddict[author]
+    print(f"{author}: {count}/{total} ({round(count/total*100, ndigits=1)}%)")
