@@ -1,4 +1,6 @@
 from wordcloud import WordCloud  # type: ignore
+from backend.process_data import frequency_dictionary
+
 
 wordcloud = WordCloud(
     width=800,
@@ -14,3 +16,8 @@ wordcloud = WordCloud(
     contour_color="steelblue",  # Outline color (when using contour_width)
     contour_width=1,  # For consistent layout between runs
 )
+
+for author in frequency_dictionary.keys():
+    freq_dict = frequency_dictionary.get(author)
+    image = wordcloud.generate_from_frequencies(freq_dict)  # type: ignore
+    image.to_file(f"output/{author}.png")  # type: ignore

@@ -1,6 +1,5 @@
-from config import wordcloud  # type: ignore
 from os import makedirs
-from functions import (
+from backend.functions import (
     processRawMessages,
     processMessageList,
 )
@@ -20,10 +19,10 @@ makedirs("output", exist_ok=True)
 
 test = processRawMessages(chat)
 
+frequency_dictionary: dict[str, dict[str, int]] = {}
+
 for author in test.keys():
+    frequency_dictionary[author] = {}
     messageList = test.get(author)
     if messageList:
-        wordList = processMessageList(messageList)
-        freq_dict = Counter(wordList)
-        image = wordcloud.generate_from_frequencies(freq_dict)  # type: ignore
-        image.to_file(f"output/{author}.png")  # type: ignore
+        frequency_dictionary[author] = Counter(processMessageList(messageList))
