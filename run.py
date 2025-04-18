@@ -1,15 +1,7 @@
-from re import split, sub, match
+from re import split, sub
 from wordcloud import WordCloud  # type: ignore
 from os import makedirs
-
-
-def cleanupMessages(messages: list[str]) -> list[str]:
-    # Remove "", \n, and symbols like , and .
-    temp = [sub(r"([.,?!*()])", "", message) for message in messages]
-    temp = [sub(r"\n", " ", message) for message in temp]
-    temp = [sub(r"[^\x00-\x7F]", "", message) for message in temp]
-    temp = [msg for msg in temp if msg != ""]
-    return temp
+from functions import processRawMessages
 
 
 # Open and read the chats from the '/data/_chat.txt' file exported by Whatsapp
@@ -21,12 +13,7 @@ except FileNotFoundError:
     print("Sorry, the file /data/_chat.txt does not exist.")
     exit()
 
-messages = cleanupMessages(
-    split(r"\d{1,2}/\d{1,2}/\d{2}, \d{1,2}:\d{2}", chat)
-)
-
-messages = [s[3:] for s in messages if match(r" - [^ ]+?: ", s)]
-
+messages = processRawMessages(chat)
 
 author_words: dict[str, list[str]] = {}
 
