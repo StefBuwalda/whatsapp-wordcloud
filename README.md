@@ -1,4 +1,5 @@
 # whatsapp-wordcloud
+whatsapp chat data in /data as _chat.txt
  ```bash
 python -m venv .venv
 ```
