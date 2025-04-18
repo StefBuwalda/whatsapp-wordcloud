@@ -2,7 +2,7 @@ from re import split, sub, match
 from regex import sub as sub2
 
 
-def processRawMessages2(chat: str) -> dict[str, list[str]]:
+def processRawMessages(chat: str) -> dict[str, list[str]]:
     output: dict[str, list[str]] = {}
     # Split based on new line
     segments = split(r"\n", chat)
@@ -42,14 +42,3 @@ def processMessageList(messages: list[str]) -> list[str]:
         if message != "<Media omitted>":
             output += message.lower().split()
     return output
-
-
-def processRawMessages(chat: str):
-    temp = split(r"\d{1,2}/\d{1,2}/\d{2}, \d{1,2}:\d{2}", chat)
-
-    temp = [sub(r"([.,?!*()])", "", message) for message in temp]
-    temp = [sub(r"\n", " ", message) for message in temp]
-    temp = [sub(r"[^\x00-\x7F]", "", message) for message in temp]
-    temp = [msg for msg in temp if msg != ""]
-
-    return [s[3:] for s in temp if match(r" - [^ ]+?: ", s)]
