@@ -1,5 +1,5 @@
 from re import split, sub, match
-from wordcloud import WordCloud
+from wordcloud import WordCloud  # type: ignore
 from os import makedirs
 
 
