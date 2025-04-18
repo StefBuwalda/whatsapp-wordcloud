@@ -21,7 +21,7 @@ test = processRawMessages(chat)
 
 frequency_dictionary: dict[str, dict[str, int]] = {}
 
-for author in test.keys():
+for author in test:
     frequency_dictionary[author] = {}
     messageList = test.get(author)
     if messageList:
