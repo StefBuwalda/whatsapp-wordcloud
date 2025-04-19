@@ -5,8 +5,13 @@ kiwisolver==1.4.8
 matplotlib==3.10.1
 numpy==2.2.4
 packaging==24.2
+pandas==2.2.3
 pillow==11.2.1
 pyparsing==3.2.3
 python-dateutil==2.9.0.post0
+pytz==2025.2
+regex==2024.11.6
+seaborn==0.13.2
 six==1.17.0
+tzdata==2025.2
 wordcloud==1.9.4
